@@ -1,5 +1,5 @@
 {% set name = "ritas" %}
-{% set version = "0.1.1" %}
+{% set version = "0.2.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/ritas-{{ version }}.tar.gz
-  sha256: 2bb70aef9e7ea27388a44e9a762f854965bd1b7e4bb7b9cb0a777b6c9a6e9a12
+  sha256: 20e119278d05551db5d26f98b28d47f0ec0df4195aa2cc0da04d245a91136d3e
 
 build:
   entry_points:

@@ -1,13 +1,14 @@
 {% set name = "ritas" %}
-{% set version = "0.3.0" %}
+{% set version = "0.4.0" %}
+{% set python_min = "3.9" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/ritas-{{ version }}.tar.gz
-  sha256: 69d4b2ade0503f9afb05127bf139faddd879172b0f7a9a6ac96147007ec5898e
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/ritas-{{ version }}.tar.gz
+  sha256: b4dea11f173b956d620dc1bfa61caf74f38a9dbfae0d13c0aa1165e20521126d
 
 build:
   entry_points:
@@ -18,12 +19,12 @@ build:
 
 requirements:
   host:
-    - python >=3.9
+    - python {{ python_min }}
     - setuptools
     - setuptools-scm
     - pip
   run:
-    - python >=3.9
+    - python >={{ python_min }}
     - click
     - geopandas
     - matplotlib-base
@@ -31,7 +32,7 @@ requirements:
     - pyarrow
     - pykrige
     - pyproj
-    - rasterio
+    - rasterio >=1.4.0
     - shapely
     - streamlit
     - tqdm
@@ -44,6 +45,7 @@ test:
     - ritas --help
   requires:
     - pip
+    - python {{ python_min }}
 
 about:
   home: https://github.com/jarad/pyritas

@@ -1,6 +1,5 @@
 {% set name = "ritas" %}
 {% set version = "0.4.0" %}
-{% set python_min = "3.9" %}
 
 package:
   name: {{ name|lower }}
@@ -15,7 +14,7 @@ build:
     - ritas = ritas.cli:main
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 0
+  number: 1
 
 requirements:
   host:

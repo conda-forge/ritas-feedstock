@@ -1,0 +1,63 @@
+schema_version: 1
+
+context:
+  name: ritas
+  version: "0.4.0"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/ritas-${{ version }}.tar.gz
+  sha256: b4dea11f173b956d620dc1bfa61caf74f38a9dbfae0d13c0aa1165e20521126d
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    entry_points:
+      - ritas = ritas.cli:main
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - setuptools
+    - setuptools-scm
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - click
+    - geopandas
+    - matplotlib-base
+    - pandas
+    - pyarrow
+    - pykrige
+    - pyproj
+    - rasterio >=1.4.0
+    - shapely
+    - streamlit
+    - tqdm
+
+tests:
+  - python:
+      imports:
+        - ritas
+      pip_check: true
+      python_version: ${{ python_min }}
+  - script:
+      - ritas --help
+
+about:
+  license: MIT
+  license_file: LICENSE
+  summary: |
+    RITAS is a package to spatially and statistically process agricultural
+    yield monitor data.
+
+  homepage: https://github.com/jarad/pyritas
+
+extra:
+  recipe-maintainers:
+    - akrherz
